@@ -91,20 +91,7 @@ export default function SplashScreen() {
           Ready to build something amazing?
         </Paragraph>
         <Link href="/test" asChild>
-          <Button
-            backgroundColor="rgba(168, 85, 247, 0.8)"
-            paddingVertical="$2"
-            paddingHorizontal="$4"
-            borderRadius="$4"
-            marginTop="$3"
-            pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
-            hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
-            animation="quick"
-          >
-            <Text color="white" fontSize="$4" fontWeight="600">
-              Test
-            </Text>
-          </Button>
+          <Text color="yellow" fontSize={20}>Go to TEST</Text>
         </Link>
         <Button
           backgroundColor={isBlue ? '#3b82f6' : '#10b981'}
@@ -239,6 +226,19 @@ export default function SplashScreen() {
         </YStack>
       </XStack>
 
+      {/* Bento Grid Section */}
+      <YStack width="100%" maxWidth={600} marginTop="$8" marginBottom="$6">
+        <H2 size="$7" color="white" textAlign="center" marginBottom="$6">
+          ✨ Feature Showcase
+        </H2>
+        
+        {/* Bento Grid Layout */}
+        <YStack gap="$3">
+          {/* Top Row - Large Feature + Small Stats */}
+          <XStack gap="$3" height={200}>
+            {/* Main Feature Card */}
+            <Card
+              flex={2}
       {/* Bento Grid Section */}
       <YStack width="100%" maxWidth={600} marginTop="$8" marginBottom="$6">
         <H2 size="$7" color="white" textAlign="center" marginBottom="$6">
