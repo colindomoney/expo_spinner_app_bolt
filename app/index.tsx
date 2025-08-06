@@ -239,33 +239,24 @@ export default function SplashScreen() {
             {/* Main Feature Card */}
             <Card
               flex={2}
-              backgroundColor="rgba(99, 102, 241, 0.8)"
-              borderColor="rgba(99, 102, 241, 0.3)"
+              backgroundColor="rgba(147, 51, 234, 0.8)"
+              borderColor="rgba(147, 51, 234, 0.3)"
               padding="$4"
-              pressStyle={{ scale: 0.95 }}
+              pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+              hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
               animation="quick"
             >
-              <YStack justifyContent="space-between" height="100%">
-                <YStack>
-                  <Text fontSize={32} marginBottom="$2">🎯</Text>
-                  <H2 size="$6" color="white" marginBottom="$2">
-                    Main Feature
-                  </H2>
-                  <Paragraph size="$3" color="rgba(255,255,255,0.8)">
-                    This is your primary feature showcase with beautiful animations
-                  </Paragraph>
-                </YStack>
-                <Button
-                  size="$3"
-                  backgroundColor="rgba(255,255,255,0.2)"
-                  color="white"
-                  alignSelf="flex-start"
-                >
-                  <Text color="white" fontSize="$3">Explore</Text>
-                </Button>
+              <YStack justifyContent="center" alignItems="center" height="100%">
+                <Text fontSize={40} marginBottom="$2">🎯</Text>
+                <H2 size="$6" color="white" textAlign="center" marginBottom="$2">
+                  Main Feature
+                </H2>
+                <Paragraph size="$3" color="rgba(255,255,255,0.8)" textAlign="center">
+                  Your primary feature showcase with beautiful animations
+                </Paragraph>
               </YStack>
             </Card>
-
+            
             {/* Stats Cards */}
             <YStack flex={1} gap="$3">
               <Card
@@ -276,105 +267,88 @@ export default function SplashScreen() {
                 pressStyle={{ scale: 0.95 }}
                 animation="quick"
               >
-                <YStack alignItems="center" justifyContent="center" height="100%">
+                <YStack justifyContent="center" alignItems="center" height="100%">
                   <Text fontSize={24} marginBottom="$1">📈</Text>
-                  <Text color="white" fontSize="$6" fontWeight="bold">99%</Text>
-                  <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">
-                    Success Rate
-                  </Text>
+                  <Text color="white" fontSize="$5" fontWeight="600">99%</Text>
+                  <Text color="rgba(255,255,255,0.8)" fontSize="$2">Success Rate</Text>
                 </YStack>
               </Card>
               
               <Card
                 flex={1}
-                backgroundColor="rgba(168, 85, 247, 0.8)"
-                borderColor="rgba(168, 85, 247, 0.3)"
+                backgroundColor="rgba(249, 115, 22, 0.8)"
+                borderColor="rgba(249, 115, 22, 0.3)"
                 padding="$3"
                 pressStyle={{ scale: 0.95 }}
                 animation="quick"
               >
-                <YStack alignItems="center" justifyContent="center" height="100%">
+                <YStack justifyContent="center" alignItems="center" height="100%">
                   <Text fontSize={24} marginBottom="$1">⚡</Text>
-                  <Text color="white" fontSize="$6" fontWeight="bold">2.1s</Text>
-                  <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">
-                    Load Time
-                  </Text>
+                  <Text color="white" fontSize="$5" fontWeight="600">2.1s</Text>
+                  <Text color="rgba(255,255,255,0.8)" fontSize="$2">Load Time</Text>
                 </YStack>
               </Card>
             </YStack>
           </XStack>
-
+          
           {/* Bottom Row - Three Equal Cards */}
           <XStack gap="$3" height={120}>
             <Card
               flex={1}
-              backgroundColor="rgba(239, 68, 68, 0.8)"
-              borderColor="rgba(239, 68, 68, 0.3)"
+              backgroundColor="rgba(59, 130, 246, 0.8)"
+              borderColor="rgba(59, 130, 246, 0.3)"
               padding="$3"
               pressStyle={{ scale: 0.95 }}
               animation="quick"
             >
-              <YStack alignItems="center" justifyContent="center" height="100%">
-                <Text fontSize={20} marginBottom="$1">🔥</Text>
-                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">
-                  Hot Features
-                </Text>
-                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">
-                  Latest updates
-                </Text>
+              <YStack justifyContent="center" alignItems="center" height="100%">
+                <Text fontSize={20} marginBottom="$1">🔒</Text>
+                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">Secure</Text>
+                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">Bank-level security</Text>
               </YStack>
             </Card>
             
             <Card
               flex={1}
-              backgroundColor="rgba(245, 158, 11, 0.8)"
-              borderColor="rgba(245, 158, 11, 0.3)"
+              backgroundColor="rgba(168, 85, 247, 0.8)"
+              borderColor="rgba(168, 85, 247, 0.3)"
               padding="$3"
               pressStyle={{ scale: 0.95 }}
               animation="quick"
             >
-              <YStack alignItems="center" justifyContent="center" height="100%">
-                <Text fontSize={20} marginBottom="$1">⭐</Text>
-                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">
-                  Premium
-                </Text>
-                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">
-                  Exclusive content
-                </Text>
+              <YStack justifyContent="center" alignItems="center" height="100%">
+                <Text fontSize={20} marginBottom="$1">🌍</Text>
+                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">Global</Text>
+                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">Worldwide access</Text>
               </YStack>
             </Card>
             
             <Card
               flex={1}
-              backgroundColor="rgba(20, 184, 166, 0.8)"
-              borderColor="rgba(20, 184, 166, 0.3)"
+              backgroundColor="rgba(236, 72, 153, 0.8)"
+              borderColor="rgba(236, 72, 153, 0.3)"
               padding="$3"
               pressStyle={{ scale: 0.95 }}
               animation="quick"
             >
-              <YStack alignItems="center" justifyContent="center" height="100%">
-                <Text fontSize={20} marginBottom="$1">🚀</Text>
-                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">
-                  Fast Setup
-                </Text>
-                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">
-                  Quick start
-                </Text>
+              <YStack justifyContent="center" alignItems="center" height="100%">
+                <Text fontSize={20} marginBottom="$1">💎</Text>
+                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">Premium</Text>
+                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">Quality first</Text>
               </YStack>
             </Card>
           </XStack>
         </YStack>
       </YStack>
 
-      {/* Navigation to Test Page */}
       <Link href="/test" asChild>
         <Button
           size="$5"
-          backgroundColor="rgba(147, 51, 234, 0.8)"
+          backgroundColor="rgba(139, 92, 246, 0.8)"
           color="white"
           marginTop="$4"
-          pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
-          hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+          pressStyle={{ scale: 0.95, backgroundColor: "rgba(124, 58, 237, 0.9)" }}
+          hoverStyle={{ backgroundColor: "rgba(124, 58, 237, 0.9)" }}
           animation="quick"
         >
           <Text color="white" fontSize="$4" fontWeight="600">
