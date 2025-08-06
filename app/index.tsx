@@ -1,144 +1,103 @@
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import { useState } from 'react';
+import React from 'react';
+import { ScrollView } from 'react-native';
+import { 
+  YStack, 
+  XStack, 
+  Text, 
+  Card,
+  LinearGradient,
+  Circle
+} from '@tamagui/core';
+import { InteractiveCard } from '@/components/InteractiveCard';
+import { StatsWidget } from '@/components/StatsWidget';
+import { AnimatedButton } from '@/components/AnimatedButton';
+import { Sparkles, Palette, Smartphone } from 'lucide-react-native';
 
-const { width, height } = Dimensions.get('window');
-
-export default function SplashScreen() {
-  const [buttonPressed, setButtonPressed] = useState(false);
-
-  const handlePress = () => {
-    setButtonPressed(!buttonPressed);
-  };
-
+export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.logoContainer}>
-          <Text style={styles.logo}>🚀</Text>
-        </View>
-        
-        <Text style={styles.title}>Welcome to Your App</Text>
-        <Text style={styles.subtitle}>
-          Ready to build something amazing?
-        </Text>
-        
-        <TouchableOpacity 
-          style={[
-            styles.button,
-            buttonPressed ? styles.buttonPressed : styles.buttonDefault
-          ]}
-          onPress={handlePress}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.buttonText}>
-            {buttonPressed ? '✨ Awesome!' : '🎉 Get Started'}
-          </Text>
-        </TouchableOpacity>
-        
-        <View style={styles.features}>
-          <View style={styles.feature}>
-            <Text style={styles.featureIcon}>⚡</Text>
-            <Text style={styles.featureText}>Lightning Fast</Text>
-          </View>
-          <View style={styles.feature}>
-            <Text style={styles.featureIcon}>🎨</Text>
-            <Text style={styles.featureText}>Beautiful Design</Text>
-          </View>
-          <View style={styles.feature}>
-            <Text style={styles.featureIcon}>📱</Text>
-            <Text style={styles.featureText}>Mobile Ready</Text>
-          </View>
-        </View>
-      </View>
-    </View>
+    <LinearGradient
+      colors={['$blue2', '$purple2', '$pink2']}
+      style={{ flex: 1 }}
+    >
+      <ScrollView 
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingVertical: 40, paddingHorizontal: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <YStack space="$4" alignItems="center">
+          {/* Header */}
+          <YStack alignItems="center" space="$3" marginBottom="$4">
+            <Circle size="$8" backgroundColor="$blue9" padding="$3">
+              <Sparkles size={32} color="white" />
+            </Circle>
+            
+            <Text 
+              fontSize="$9" 
+              fontWeight="bold" 
+              color="$gray12"
+              textAlign="center"
+              letterSpacing={-1}
+            >
+              Tamagui Showcase
+            </Text>
+            
+            <Text 
+              fontSize="$4" 
+              color="$gray10" 
+              textAlign="center"
+              maxWidth={300}
+              lineHeight="$2"
+            >
+              Beautiful, performant React Native components with amazing animations
+            </Text>
+          </YStack>
+
+          {/* Feature highlights */}
+          <XStack space="$3" marginBottom="$4">
+            <Card flex={1} padding="$3" backgroundColor="$background" borderRadius="$4">
+              <YStack alignItems="center" space="$2">
+                <Palette size={24} color="$purple10" />
+                <Text fontSize="$3" fontWeight="600" color="$gray11" textAlign="center">
+                  Themeable
+                </Text>
+              </YStack>
+            </Card>
+            
+            <Card flex={1} padding="$3" backgroundColor="$background" borderRadius="$4">
+              <YStack alignItems="center" space="$2">
+                <Zap size={24} color="$yellow10" />
+                <Text fontSize="$3" fontWeight="600" color="$gray11" textAlign="center">
+                  Fast
+                </Text>
+              </YStack>
+            </Card>
+            
+            <Card flex={1} padding="$3" backgroundColor="$background" borderRadius="$4">
+              <YStack alignItems="center" space="$2">
+                <Smartphone size={24} color="$green10" />
+                <Text fontSize="$3" fontWeight="600" color="$gray11" textAlign="center">
+                  Native
+                </Text>
+              </YStack>
+            </Card>
+          </XStack>
+
+          {/* Interactive widgets */}
+          <InteractiveCard />
+          <StatsWidget />
+          <AnimatedButton />
+          
+          {/* Footer */}
+          <YStack alignItems="center" space="$2" marginTop="$6">
+            <Text fontSize="$3" color="$gray9" textAlign="center">
+              Built with ❤️ using Tamagui
+            </Text>
+            <Text fontSize="$2" color="$gray8" textAlign="center">
+              Swipe, tap, and interact with the widgets above
+            </Text>
+          </YStack>
+        </YStack>
+      </ScrollView>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0f0f23',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  content: {
-    alignItems: 'center',
-    maxWidth: 400,
-    width: '100%',
-  },
-  logoContainer: {
-    marginBottom: 40,
-    padding: 20,
-    backgroundColor: 'rgba(99, 102, 241, 0.1)',
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: 'rgba(99, 102, 241, 0.3)',
-  },
-  logo: {
-    fontSize: 60,
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    textAlign: 'center',
-    marginBottom: 12,
-    letterSpacing: -0.5,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#a1a1aa',
-    textAlign: 'center',
-    marginBottom: 40,
-    lineHeight: 24,
-  },
-  button: {
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: 25,
-    marginBottom: 50,
-    minWidth: 200,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  buttonDefault: {
-    backgroundColor: '#6366f1',
-  },
-  buttonPressed: {
-    backgroundColor: '#10b981',
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  features: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginTop: 20,
-  },
-  feature: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  featureIcon: {
-    fontSize: 24,
-    marginBottom: 8,
-  },
-  featureText: {
-    color: '#71717a',
-    fontSize: 14,
-    textAlign: 'center',
-    fontWeight: '500',
-  },
-});

@@ -7,6 +7,12 @@
     "dev": "expo start"
   },
   "dependencies": {
+    "@tamagui/animations-react-native": "^1.132.16",
+    "@tamagui/config": "^1.132.16",
+    "@tamagui/core": "^1.132.16",
+    "@tamagui/font-inter": "^1.132.16",
+    "@tamagui/shorthands": "^1.132.16",
+    "@tamagui/theme-base": "^1.132.16",
     "expo": "~52.0.11",
     "expo-linking": "^7.1.7",
     "expo-router": "~4.0.17",
@@ -14,6 +20,8 @@
     "react": "18.3.1",
     "react-dom": "^18.3.1",
     "react-native": "0.76.5",
+    "react-native-gesture-handler": "^2.27.2",
+    "react-native-reanimated": "^4.0.1",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-web": "^0.21.0"
   },
