@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "simple-expo-app",
+    "slug": "simple-expo-app",
+    "version": "1.0.0",
+    "platforms": ["web"],
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
