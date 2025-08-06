@@ -182,6 +182,10 @@ export default function SplashScreen() {
           backgroundColor={fabPressed ? '#10b981' : '#6366f1'}
           onPress={handleFabPress}
           pressStyle={{ scale: 0.8 }}
+          hoverStyle={{ 
+            backgroundColor: fabPressed ? '#059669' : '#4f46e5',
+            opacity: 1
+          }}
           animation="quick"
           width={80}
           height={80}
