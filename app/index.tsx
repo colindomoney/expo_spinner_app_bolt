@@ -1,6 +1,6 @@
 import { Dimensions, Animated, TouchableOpacity, Text as RNText } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
-import { YStack, XStack, H1, H2, Text, Paragraph, Card, Button, Progress, Stack } from 'tamagui';
+import { YStack, XStack, H1, H2, Text, Paragraph, Card, Button, Progress, Stack, Sheet, Switch, Slider, Avatar } from 'tamagui';
 import { Link } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
@@ -10,6 +10,9 @@ export default function SplashScreen() {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [fabPressed, setFabPressed] = useState(false);
   const [isBlue, setIsBlue] = useState(true);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+  const [volume, setVolume] = useState(50);
   
   // Animation refs
   const progressAnim = useRef(new Animated.Value(0)).current;
@@ -222,6 +225,130 @@ export default function SplashScreen() {
           </Paragraph>
         </YStack>
       </XStack>
+
+      {/* Cool Sheet Trigger Button */}
+      <Button
+        size="$5"
+        backgroundColor="rgba(139, 92, 246, 0.8)"
+        color="white"
+        marginTop="$6"
+        pressStyle={{ scale: 0.95, backgroundColor: "rgba(124, 58, 237, 0.9)" }}
+        hoverStyle={{ backgroundColor: "rgba(124, 58, 237, 0.9)" }}
+        animation="quick"
+        onPress={() => setSheetOpen(true)}
+      >
+        <Text color="white" fontSize="$4" fontWeight="600">
+          🎛️ Open Control Panel
+        </Text>
+      </Button>
+
+      {/* Tamagui Sheet - The Cool Part! */}
+      <Sheet
+        modal
+        open={sheetOpen}
+        onOpenChange={setSheetOpen}
+        snapPoints={[85]}
+        dismissOnSnapToBottom
+        animation="medium"
+      >
+        <Sheet.Overlay 
+          animation="lazy" 
+          enterStyle={{ opacity: 0 }} 
+          exitStyle={{ opacity: 0 }} 
+        />
+        <Sheet.Handle backgroundColor="$gray8" />
+        <Sheet.Frame backgroundColor="$background" padding="$4" borderTopLeftRadius="$6" borderTopRightRadius="$6">
+          <YStack gap="$4">
+            <XStack alignItems="center" justifyContent="space-between" marginBottom="$2">
+              <H2 size="$7" color="white">Control Panel</H2>
+              <Button
+                size="$3"
+                circular
+                backgroundColor="rgba(239, 68, 68, 0.8)"
+                onPress={() => setSheetOpen(false)}
+                pressStyle={{ scale: 0.9 }}
+              >
+                <Text color="white" fontSize="$3">✕</Text>
+              </Button>
+            </XStack>
+
+            {/* User Profile Section */}
+            <Card backgroundColor="rgba(255,255,255,0.05)" borderColor="rgba(255,255,255,0.1)" padding="$4">
+              <XStack alignItems="center" gap="$3" marginBottom="$3">
+                <Avatar circular size="$6" backgroundColor="$purple10">
+                  <Avatar.Image src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2" />
+                  <Avatar.Fallback backgroundColor="$purple10">
+                    <Text color="white" fontSize="$5">👤</Text>
+                  </Avatar.Fallback>
+                </Avatar>
+                <YStack flex={1}>
+                  <Text color="white" fontSize="$5" fontWeight="600">Alex Developer</Text>
+                  <Text color="$gray10" fontSize="$3">Premium User</Text>
+                </YStack>
+              </XStack>
+            </Card>
+
+            {/* Settings Section */}
+            <Card backgroundColor="rgba(255,255,255,0.05)" borderColor="rgba(255,255,255,0.1)" padding="$4">
+              <H2 size="$5" color="white" marginBottom="$4">Settings</H2>
+              
+              <XStack alignItems="center" justifyContent="space-between" marginBottom="$4">
+                <YStack>
+                  <Text color="white" fontSize="$4" fontWeight="500">Dark Mode</Text>
+                  <Text color="$gray10" fontSize="$2">Toggle theme appearance</Text>
+                </YStack>
+                <Switch
+                  size="$4"
+                  checked={darkMode}
+                  onCheckedChange={setDarkMode}
+                  backgroundColor={darkMode ? "$purple10" : "$gray8"}
+                >
+                  <Switch.Thumb animation="quick" backgroundColor="white" />
+                </Switch>
+              </XStack>
+
+              <YStack gap="$2">
+                <XStack alignItems="center" justifyContent="space-between">
+                  <Text color="white" fontSize="$4" fontWeight="500">Volume</Text>
+                  <Text color="$purple10" fontSize="$3" fontWeight="600">{Math.round(volume)}%</Text>
+                </XStack>
+                <Slider
+                  value={[volume]}
+                  onValueChange={(value) => setVolume(value[0])}
+                  max={100}
+                  step={1}
+                  backgroundColor="rgba(255,255,255,0.1)"
+                >
+                  <Slider.Track backgroundColor="rgba(255,255,255,0.2)">
+                    <Slider.TrackActive backgroundColor="$purple10" />
+                  </Slider.Track>
+                  <Slider.Thumb size="$1" index={0} backgroundColor="white" borderColor="$purple10" borderWidth={2} />
+                </Slider>
+              </YStack>
+            </Card>
+
+            {/* Action Buttons */}
+            <XStack gap="$3" justifyContent="center" marginTop="$4">
+              <Button
+                flex={1}
+                backgroundColor="rgba(34, 197, 94, 0.8)"
+                pressStyle={{ scale: 0.95, backgroundColor: "rgba(22, 163, 74, 0.9)" }}
+                hoverStyle={{ backgroundColor: "rgba(22, 163, 74, 0.9)" }}
+              >
+                <Text color="white" fontWeight="600">Save</Text>
+              </Button>
+              <Button
+                flex={1}
+                backgroundColor="rgba(168, 85, 247, 0.8)"
+                pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+                hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+              >
+                <Text color="white" fontWeight="600">Share</Text>
+              </Button>
+            </XStack>
+          </YStack>
+        </Sheet.Frame>
+      </Sheet>
     </YStack>
   );
 }
