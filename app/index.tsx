@@ -226,6 +226,28 @@ export default function SplashScreen() {
         </YStack>
       </XStack>
 
+      {/* Bento Grid Section */}
+      <YStack width="100%" maxWidth={600} marginTop="$8" marginBottom="$6">
+        <H2 size="$7" color="white" textAlign="center" marginBottom="$6">
+          ✨ Feature Showcase
+        </H2>
+        
+        {/* Bento Grid Layout */}
+        <YStack gap="$3">
+          {/* Top Row - Large Feature + Small Stats */}
+          <XStack gap="$3" height={200}>
+            {/* Main Feature Card */}
+            <Card
+              flex={2}
+            pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+            hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+            animation="quick"
+          >
+            <Text color="white" fontSize="$4" fontWeight="600">
+              Test Page
+            </Text>
+          </Button>
+        </Link>
       {/* Cool Sheet Trigger Button */}
       <Button
         size="$5"
