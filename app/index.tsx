@@ -91,7 +91,20 @@ export default function SplashScreen() {
           Ready to build something amazing?
         </Paragraph>
         <Link href="/test" asChild>
-          <Text color="yellow" fontSize={20}>Go to TEST</Text>
+          <Button
+            backgroundColor="rgba(168, 85, 247, 0.8)"
+            paddingVertical="$2"
+            paddingHorizontal="$4"
+            borderRadius="$4"
+            marginTop="$3"
+            pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+            hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+            animation="quick"
+          >
+            <Text color="white" fontSize="$4" fontWeight="600">
+              Test
+            </Text>
+          </Button>
         </Link>
         <Button
           backgroundColor={isBlue ? '#3b82f6' : '#10b981'}
@@ -239,124 +252,36 @@ export default function SplashScreen() {
             {/* Main Feature Card */}
             <Card
               flex={2}
-              backgroundColor="rgba(147, 51, 234, 0.8)"
-              borderColor="rgba(147, 51, 234, 0.3)"
-              padding="$4"
-              pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
-              hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
-              animation="quick"
-            >
-              <YStack justifyContent="center" alignItems="center" height="100%">
-                <Text fontSize={40} marginBottom="$2">🎯</Text>
-                <H2 size="$6" color="white" textAlign="center" marginBottom="$2">
-                  Main Feature
-                </H2>
-                <Paragraph size="$3" color="rgba(255,255,255,0.8)" textAlign="center">
-                  Your primary feature showcase with beautiful animations
-                </Paragraph>
-              </YStack>
-            </Card>
-            
-            {/* Stats Cards */}
-            <YStack flex={1} gap="$3">
-              <Card
-                flex={1}
-                backgroundColor="rgba(34, 197, 94, 0.8)"
-                borderColor="rgba(34, 197, 94, 0.3)"
-                padding="$3"
-                pressStyle={{ scale: 0.95 }}
-                animation="quick"
-              >
-                <YStack justifyContent="center" alignItems="center" height="100%">
-                  <Text fontSize={24} marginBottom="$1">📈</Text>
-                  <Text color="white" fontSize="$5" fontWeight="600">99%</Text>
-                  <Text color="rgba(255,255,255,0.8)" fontSize="$2">Success Rate</Text>
-                </YStack>
-              </Card>
-              
-              <Card
-                flex={1}
-                backgroundColor="rgba(249, 115, 22, 0.8)"
-                borderColor="rgba(249, 115, 22, 0.3)"
-                padding="$3"
-                pressStyle={{ scale: 0.95 }}
-                animation="quick"
-              >
-                <YStack justifyContent="center" alignItems="center" height="100%">
-                  <Text fontSize={24} marginBottom="$1">⚡</Text>
-                  <Text color="white" fontSize="$5" fontWeight="600">2.1s</Text>
-                  <Text color="rgba(255,255,255,0.8)" fontSize="$2">Load Time</Text>
-                </YStack>
-              </Card>
-            </YStack>
-          </XStack>
-          
-          {/* Bottom Row - Three Equal Cards */}
-          <XStack gap="$3" height={120}>
+            hoverStyle={{ backgroundColor: "rgba(124, 58, 237, 0.9)" }}
+            animation="quick"
+          >
+            <Text color="white" fontSize="$4" fontWeight="600">
+              Test
+            </Text>
+          </Button>
+        </Link>
+      {/* Bento Grid Section */}
+      <YStack width="100%" maxWidth={600} marginTop="$8" marginBottom="$6">
+        <H2 size="$7" color="white" textAlign="center" marginBottom="$6">
+          ✨ Feature Showcase
+        </H2>
+        
+        {/* Bento Grid Layout */}
+        <YStack gap="$3">
+          {/* Top Row - Large Feature + Small Stats */}
+          <XStack gap="$3" height={200}>
+            {/* Main Feature Card */}
             <Card
-              flex={1}
-              backgroundColor="rgba(59, 130, 246, 0.8)"
-              borderColor="rgba(59, 130, 246, 0.3)"
-              padding="$3"
-              pressStyle={{ scale: 0.95 }}
-              animation="quick"
-            >
-              <YStack justifyContent="center" alignItems="center" height="100%">
-                <Text fontSize={20} marginBottom="$1">🔒</Text>
-                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">Secure</Text>
-                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">Bank-level security</Text>
-              </YStack>
-            </Card>
-            
-            <Card
-              flex={1}
-              backgroundColor="rgba(168, 85, 247, 0.8)"
-              borderColor="rgba(168, 85, 247, 0.3)"
-              padding="$3"
-              pressStyle={{ scale: 0.95 }}
-              animation="quick"
-            >
-              <YStack justifyContent="center" alignItems="center" height="100%">
-                <Text fontSize={20} marginBottom="$1">🌍</Text>
-                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">Global</Text>
-                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">Worldwide access</Text>
-              </YStack>
-            </Card>
-            
-            <Card
-              flex={1}
-              backgroundColor="rgba(236, 72, 153, 0.8)"
-              borderColor="rgba(236, 72, 153, 0.3)"
-              padding="$3"
-              pressStyle={{ scale: 0.95 }}
-              animation="quick"
-            >
-              <YStack justifyContent="center" alignItems="center" height="100%">
-                <Text fontSize={20} marginBottom="$1">💎</Text>
-                <Text color="white" fontSize="$4" fontWeight="600" textAlign="center">Premium</Text>
-                <Text color="rgba(255,255,255,0.8)" fontSize="$2" textAlign="center">Quality first</Text>
-              </YStack>
-            </Card>
-          </XStack>
-        </YStack>
-      </YStack>
-
-      <Link href="/test" asChild>
-        <Button
-          size="$5"
-          backgroundColor="rgba(139, 92, 246, 0.8)"
-          color="white"
-          marginTop="$4"
-          pressStyle={{ scale: 0.95, backgroundColor: "rgba(124, 58, 237, 0.9)" }}
-          hoverStyle={{ backgroundColor: "rgba(124, 58, 237, 0.9)" }}
-          animation="quick"
-        >
-          <Text color="white" fontSize="$4" fontWeight="600">
-            Test Page
-          </Text>
-        </Button>
-      </Link>
-
+              flex={2}
+            pressStyle={{ scale: 0.95, backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+            hoverStyle={{ backgroundColor: "rgba(147, 51, 234, 0.9)" }}
+            animation="quick"
+          >
+            <Text color="white" fontSize="$4" fontWeight="600">
+              Test Page
+            </Text>
+          </Button>
+        </Link>
       {/* Cool Sheet Trigger Button */}
       <Button
         size="$5"
