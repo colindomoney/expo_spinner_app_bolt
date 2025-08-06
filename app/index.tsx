@@ -1,144 +1,219 @@
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import { useState } from 'react';
+import { Dimensions, Animated, TouchableOpacity, Text as RNText } from 'react-native';
+import { useState, useEffect, useRef } from 'react';
+import { YStack, XStack, H1, H2, Text, Paragraph, Card, Button, Progress, Stack } from 'tamagui';
+import { Link } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 
 export default function SplashScreen() {
-  const [buttonPressed, setButtonPressed] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [fabPressed, setFabPressed] = useState(false);
+  const [isBlue, setIsBlue] = useState(true);
+  
+  // Animation refs
+  const progressAnim = useRef(new Animated.Value(0)).current;
+  const cardScale = useRef(new Animated.Value(1)).current;
+  const fabScale = useRef(new Animated.Value(1)).current;
+  const fabRotation = useRef(new Animated.Value(0)).current;
+  
+  // Animated progress bar
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        const newProgress = prev >= 100 ? 0 : prev + 2;
+        Animated.timing(progressAnim, {
+          toValue: newProgress,
+          duration: 100,
+          useNativeDriver: false,
+        }).start();
+        return newProgress;
+      });
+    }, 100);
+    
+    return () => clearInterval(interval);
+  }, [progressAnim]);
 
-  const handlePress = () => {
-    setButtonPressed(!buttonPressed);
+  const handleCardPress = () => {
+    setIsCardOpen(!isCardOpen);
+    Animated.sequence([
+      Animated.timing(cardScale, {
+        toValue: 0.95,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(cardScale, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const handleFabPress = () => {
+    setFabPressed(!fabPressed);
+    Animated.parallel([
+      Animated.sequence([
+        Animated.timing(fabScale, {
+          toValue: 0.8,
+          duration: 100,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fabScale, {
+          toValue: 1,
+          duration: 100,
+          useNativeDriver: true,
+        }),
+      ]),
+      Animated.timing(fabRotation, {
+        toValue: 360,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+    ]).start();
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.logoContainer}>
-          <Text style={styles.logo}>🚀</Text>
-        </View>
+    <YStack flex={1} backgroundColor="#0f0f23" alignItems="center" justifyContent="center" paddingHorizontal="$4">
+      {/* Header Section */}
+      <YStack alignItems="center" marginBottom="$8">
+        <Stack padding="$5" backgroundColor="rgba(99, 102, 241, 0.1)" borderRadius="$10" borderWidth={2} borderColor="rgba(99, 102, 241, 0.3)" marginBottom="$5">
+          <Text fontSize={60} textAlign="center">🚀</Text>
+        </Stack>
         
-        <Text style={styles.title}>Welcome to Your App</Text>
-        <Text style={styles.subtitle}>
+        <H1 size="$9" color="white" textAlign="center" marginBottom="$3">
+          Welcome to Your App
+        </H1>
+        <Paragraph size="$5" color="$gray10" textAlign="center">
           Ready to build something amazing?
-        </Text>
-        
-        <TouchableOpacity 
-          style={[
-            styles.button,
-            buttonPressed ? styles.buttonPressed : styles.buttonDefault
-          ]}
-          onPress={handlePress}
-          activeOpacity={0.8}
+        </Paragraph>
+        <Link href="/test" asChild>
+          <Text color="yellow" fontSize={20}>Go to TEST</Text>
+        </Link>
+        <Button
+          backgroundColor={isBlue ? '#3b82f6' : '#10b981'}
+          paddingVertical={6}
+          paddingHorizontal={12}
+          borderRadius={8}
+          marginTop={16}
+          pressStyle={{ opacity: 0.8, scale: 0.98 }}
+          animation="quick"
+          onPress={() => {
+            console.log('Button pressed!');
+
+            setIsBlue(prev => {
+              console.log('=== BUTTON PRESS EVENT ===');
+              console.log('Current isBlue before setState:', prev);
+              console.log('Called setIsBlue with:', !prev);
+              return !prev;
+            });
+          }}
+          onPressIn={() => console.log('onPressIn fired')}
+          onPressOut={() => console.log('onPressOut fired')}
         >
-          <Text style={styles.buttonText}>
-            {buttonPressed ? '✨ Awesome!' : '🎉 Get Started'}
+          <Text color="white" fontSize={16} textAlign="center">
+            Toggle Background ({isBlue.toString()})
           </Text>
-        </TouchableOpacity>
+        </Button>
+      </YStack>
+
+      {/* Widget 1: Animated Progress Bar */}
+      <YStack width="100%" maxWidth={400} marginBottom="$6">
+        <H2 size="$6" color="white" textAlign="center" marginBottom="$4">
+          Loading Awesome Features...
+        </H2>
+        <Progress value={progress} max={100} backgroundColor="rgba(255,255,255,0.1)" marginBottom="$2">
+          <Progress.Indicator animation="quick" backgroundColor="#6366f1" />
+        </Progress>
+        <Text color="$gray11" textAlign="center" fontSize="$3">
+          {Math.round(progress)}% Complete
+        </Text>
+      </YStack>
+
+      {/* Widget 2: Interactive Card */}
+      <Card
+        elevate
+        bordered
+        padded
+        pressStyle={{ scale: 0.95 }}
+        animation="quick"
+        onPress={handleCardPress}
+        width="100%"
+        maxWidth={400}
+        marginBottom="$6"
+        backgroundColor="rgba(255,255,255,0.05)"
+        borderColor="rgba(255,255,255,0.1)"
+      >
+        <XStack marginBottom="$3">
+          <Text fontSize={24} marginRight="$2">🎨</Text>
+          <YStack flex={1}>
+            <H2 size="$5" color="white" marginBottom="$1">
+              Interactive Card
+            </H2>
+            <Paragraph size="$3" color="$gray10">
+              Tap me to see the magic!
+            </Paragraph>
+          </YStack>
+        </XStack>
         
-        <View style={styles.features}>
-          <View style={styles.feature}>
-            <Text style={styles.featureIcon}>⚡</Text>
-            <Text style={styles.featureText}>Lightning Fast</Text>
-          </View>
-          <View style={styles.feature}>
-            <Text style={styles.featureIcon}>🎨</Text>
-            <Text style={styles.featureText}>Beautiful Design</Text>
-          </View>
-          <View style={styles.feature}>
-            <Text style={styles.featureIcon}>📱</Text>
-            <Text style={styles.featureText}>Mobile Ready</Text>
-          </View>
-        </View>
-      </View>
-    </View>
+        {isCardOpen && (
+          <YStack borderTopWidth={1} borderTopColor="rgba(255,255,255,0.1)" paddingTop="$3">
+            <Paragraph size="$3" color="$green10" textAlign="center" marginBottom="$2">
+              ✨ Wow! You discovered the secret animation!
+            </Paragraph>
+            <XStack justifyContent="center" gap="$2">
+              <Text fontSize={20}>🌟</Text>
+              <Text fontSize={20}>💫</Text>
+              <Text fontSize={20}>⭐</Text>
+            </XStack>
+          </YStack>
+        )}
+      </Card>
+
+      {/* Widget 3: Floating Action Button */}
+      <YStack alignItems="center" marginBottom="$6">
+        <Button
+          size="$6"
+          circular
+          backgroundColor={fabPressed ? '#10b981' : '#6366f1'}
+          onPress={handleFabPress}
+          pressStyle={{ scale: 0.8 }}
+          animation="quick"
+          width={80}
+          height={80}
+          marginBottom="$2"
+        >
+          <Text fontSize={24}>
+            {fabPressed ? '✨' : '🎉'}
+          </Text>
+        </Button>
+        
+        <Text color="$gray11" textAlign="center" fontSize="$3">
+          {fabPressed ? 'Amazing!' : 'Tap the floating button!'}
+        </Text>
+      </YStack>
+
+      {/* Features Section */}
+      <XStack justifyContent="space-around" width="100%" maxWidth={400}>
+        <YStack alignItems="center" flex={1}>
+          <Text fontSize={24} marginBottom="$2">⚡</Text>
+          <Paragraph size="$2" color="$gray11" textAlign="center" fontWeight="500">
+            Lightning Fast
+          </Paragraph>
+        </YStack>
+        <YStack alignItems="center" flex={1}>
+          <Text fontSize={24} marginBottom="$2">🎨</Text>
+          <Paragraph size="$2" color="$gray11" textAlign="center" fontWeight="500">
+            Beautiful Design
+          </Paragraph>
+        </YStack>
+        <YStack alignItems="center" flex={1}>
+          <Text fontSize={24} marginBottom="$2">📱</Text>
+          <Paragraph size="$2" color="$gray11" textAlign="center" fontWeight="500">
+            Mobile Ready
+          </Paragraph>
+        </YStack>
+      </XStack>
+    </YStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0f0f23',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  content: {
-    alignItems: 'center',
-    maxWidth: 400,
-    width: '100%',
-  },
-  logoContainer: {
-    marginBottom: 40,
-    padding: 20,
-    backgroundColor: 'rgba(99, 102, 241, 0.1)',
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: 'rgba(99, 102, 241, 0.3)',
-  },
-  logo: {
-    fontSize: 60,
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    textAlign: 'center',
-    marginBottom: 12,
-    letterSpacing: -0.5,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#a1a1aa',
-    textAlign: 'center',
-    marginBottom: 40,
-    lineHeight: 24,
-  },
-  button: {
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: 25,
-    marginBottom: 50,
-    minWidth: 200,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  buttonDefault: {
-    backgroundColor: '#6366f1',
-  },
-  buttonPressed: {
-    backgroundColor: '#10b981',
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  features: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginTop: 20,
-  },
-  feature: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  featureIcon: {
-    fontSize: 24,
-    marginBottom: 8,
-  },
-  featureText: {
-    color: '#71717a',
-    fontSize: 14,
-    textAlign: 'center',
-    fontWeight: '500',
-  },
-});
