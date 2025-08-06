@@ -96,7 +96,11 @@ export default function SplashScreen() {
           paddingHorizontal={12}
           borderRadius={8}
           marginTop={16}
-          pressStyle={{ opacity: 0.8, scale: 0.98 }}
+          pressStyle={{ opacity: 0.9, scale: 0.98 }}
+          hoverStyle={{ 
+            backgroundColor: isBlue ? '#2563eb' : '#059669',
+            opacity: 1
+          }}
           animation="quick"
           onPress={() => {
             console.log('Button pressed!');
