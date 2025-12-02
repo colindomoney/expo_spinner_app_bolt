@@ -1,13 +1,27 @@
 {
   "expo": {
-    "name": "simple-expo-app",
-    "slug": "simple-expo-app",
+    "name": "spinner-app",
+    "slug": "spinner-app",
+    "owner": "thinking-of-u",
     "version": "1.0.0",
     "scheme": "simple-expo-app",
-    "platforms": ["web"],
+    "platforms": [
+      "web"
+    ],
     "web": {
       "bundler": "metro"
     },
-    "newArchEnabled": true
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "com.spinner-app.com",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8bf91f8f-8c66-49cb-929f-7b1b9e1838e8"
+      }
+    }
   }
 }
