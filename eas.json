@@ -3,6 +3,10 @@
     "dev": {
       "distribution": "internal",
       "credentialsSource": "local"
+    },
+    "production": {
+      "distribution": "store",
+      "credentialsSource": "local"
     }
   }
 }

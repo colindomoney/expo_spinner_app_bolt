@@ -1,21 +1,28 @@
 {
   "expo": {
-    "name": "spinner-app",
+    "name": "Spinner App",
     "slug": "spinner-app",
     "owner": "thinking-of-u",
     "version": "1.0.0",
     "scheme": "simple-expo-app",
     "platforms": [
+      "ios",
       "web"
     ],
     "web": {
       "bundler": "metro"
     },
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "bundleIdentifier": "com.spinner-app.com",
+      "buildNumber": "5",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "experiments": {
+      "xcodeProject": {
+        "name": "Spinner App"
       }
     },
     "extra": {

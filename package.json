@@ -4,7 +4,9 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
-    "dev": "expo start"
+    "dev": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "@tamagui/animations-react-native": "^1.132.16",
