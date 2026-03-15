@@ -3,7 +3,10 @@
     "allow": [
       "Bash(cat:*)",
       "Bash(security cms:*)",
-      "Bash(npx expo prebuild:*)"
+      "Bash(npx expo prebuild:*)",
+      "Bash(git restore:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
